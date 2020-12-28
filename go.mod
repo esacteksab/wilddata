@@ -1,4 +1,4 @@
-module github.com/heroku/go-getting-started
+module gitlab.com/esacteksab/wtfizit
 
 go 1.15
 
