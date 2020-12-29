@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 	"os"
 
 	"github.com/getsentry/sentry-go"
@@ -31,15 +30,48 @@ func main() {
 		log.Fatal("$PORT must be set")
 	}
 
-	router := gin.New()
+	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(sentrygin.New(sentrygin.Options{}))
-	router.LoadHTMLGlob("templates/*.tmpl.html")
-	router.Static("/static", "static")
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl.html", nil)
-	})
+	apiV1 := router.Group("/v1")
 
+	apiV1.GET("artifacts", APIV1GetArtifacts)
+
+	apiV1.POST("artifacts", APIV1AddArtifact)
+
+	apiV1.GET("artifact/:id", APIV1GetArtifact)
+
+	apiV1.PUT("artifact/:id", APIV1UpdateArtifact)
+
+	apiV1.DELETE("artifact/:id", APIV1DeleteArtifact)
 	router.Run(":" + port)
+}
+
+// APIV1GetArtifacts gets all artifacts
+func APIV1GetArtifacts(c *gin.Context) {
+	c.JSON(200, gin.H{"method": "GET"})
+}
+
+// APIV1AddArtifact adds an artifact
+func APIV1AddArtifact(c *gin.Context) {
+	c.JSON(200, gin.H{"method": "POST"})
+}
+
+// APIV1GetArtifact gets an individual artifact
+func APIV1GetArtifact(c *gin.Context) {
+	id := c.Param("id")
+	c.JSON(200, gin.H{"method": "GET", "id": id})
+}
+
+// APIV1UpdateArtifact updates an individual artifact
+func APIV1UpdateArtifact(c *gin.Context) {
+	id := c.Param("id")
+	c.JSON(200, gin.H{"method": "PUT", "id": id})
+}
+
+// APIV1DeleteArtifact deletes an individual artifact
+func APIV1DeleteArtifact(c *gin.Context) {
+	id := c.Param("id")
+	c.JSON(200, gin.H{"method": "DELETE", "id": id})
 }
