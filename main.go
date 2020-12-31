@@ -40,11 +40,11 @@ func main() {
 
 	apiV1.POST("artifacts", APIV1AddArtifact)
 
-	apiV1.GET("artifact/:id", APIV1GetArtifact)
+	apiV1.GET("artifacts/:id", APIV1GetArtifact)
 
-	apiV1.PUT("artifact/:id", APIV1UpdateArtifact)
+	apiV1.PUT("artifacts/:id", APIV1UpdateArtifact)
 
-	apiV1.DELETE("artifact/:id", APIV1DeleteArtifact)
+	apiV1.DELETE("artifacts/:id", APIV1DeleteArtifact)
 	router.Run(":" + port)
 }
 
