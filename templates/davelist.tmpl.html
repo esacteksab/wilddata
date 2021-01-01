@@ -1,0 +1,29 @@
+<html>
+  {{template "header.tmpl.html"}}
+<body>
+  {{template "nav.tmpl.html"}}
+
+<div class="jumbotron text-center">
+  <div class="container">
+    <a href="/" class="lang-logo">
+      <img src="/static/lang-logo.png">
+    </a>
+    <h1>Dave's List 'o Doom</h1>
+
+  </div>
+</div>
+<div class="container">
+
+  <hr>
+  <div class="row">
+    <ul>
+        {{ range .list }}
+        <li>{{ . }}</li>
+        {{ end }}
+    </ul>
+  </div> <!-- row -->
+
+</div>
+
+</body>
+</html>
