@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"strconv"
-	"time"
 
 	"github.com/getsentry/sentry-go"
 	sentrygin "github.com/getsentry/sentry-go/gin"
@@ -13,21 +12,23 @@ import (
 	_ "github.com/heroku/x/hmetrics/onload"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
-type Artifact struct {
+// Artifacts struct
+type Artifacts struct {
 	gorm.Model
-	ID        uint      `gorm:"primaryKEY" json:"id"`
-	Org       int       `json:"org"`
-	Name      string    `gorm:"not null" json:"name"`
-	CreatedAt time.Time `json:"createdat"`
-	UpdatedAt time.Time `json:"updatedat"`
-	DeletedAt time.Time `json:"deletedat"`
+	ID   uint   //`gorm:"primaryKEY" json:"id"`
+	Org  int    //`json:"org"`
+	Name string //`gorm:"not null" json:"name"`
+	// CreatedAt time.Time //`json:"createdat"`
+	// UpdatedAt time.Time //`json:"updatedat"`
+	// DeletedAt time.Time //`json:"deletedat"`
 }
 
 func InitDb() *gorm.DB {
 	// Openning file
-	database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{})
+	database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
 
 	// Error
 	if err != nil {
@@ -35,7 +36,7 @@ func InitDb() *gorm.DB {
 	}
 
 	// Migrate the schema
-	database.AutoMigrate(&Artifact{})
+	database.AutoMigrate(&Artifacts{})
 
 	return database
 }
@@ -75,6 +76,7 @@ func main() {
 	apiV1.PUT("artifacts/:id", APIV1UpdateArtifact)
 
 	apiV1.DELETE("artifacts/:id", APIV1DeleteArtifact)
+
 	router.Run(":" + port)
 }
 
@@ -83,9 +85,11 @@ func APIV1GetArtifacts(c *gin.Context) {
 
 	db := InitDb()
 
-	var artifact Artifact
-	db.Find(&artifact)
-	c.JSON(200, gin.H{"success": artifact})
+	var artifacts []Artifacts
+	fmt.Println(artifacts)
+	db.Find(&artifacts)
+	fmt.Println(artifacts)
+	c.JSON(200, artifacts)
 }
 
 // APIV1AddArtifact adds an artifact
@@ -93,10 +97,12 @@ func APIV1AddArtifact(c *gin.Context) {
 
 	db := InitDb()
 
-	var artifact Artifact
-	c.BindJSON(&artifact)
-	db.Create(&artifact)
-	c.JSON(201, gin.H{"success": artifact})
+	var artifacts Artifacts
+	c.BindJSON(&artifacts)
+	fmt.Println(artifacts)
+	db.Create(&artifacts)
+	fmt.Println(artifacts)
+	c.JSON(201, gin.H{"success": artifacts})
 }
 
 // APIV1GetArtifact gets an individual artifact
@@ -104,19 +110,14 @@ func APIV1GetArtifact(c *gin.Context) {
 
 	db := InitDb()
 
-	var artifact Artifact
-	id := c.Param("id")
-	// String ID
-	sid, err := strconv.Atoi(id)
-	fmt.Println(sid)
+	var artifact Artifacts
+	id := c.Params.ByName("id")
 
-	if err != nil {
-		fmt.Println(err)
-	}
-	db.Where("org = ?", sid).Find(&artifact)
-	//db.Find(&artifact, "org = ?", sid)
-	//foo := db.First(&artifact, "org = ?", sid)
-	c.JSON(200, &artifact)
+	sid, _ := strconv.Atoi(id)
+
+	db.Find(&artifact, "org = ?", sid)
+	fmt.Println(artifact)
+	c.JSON(200, artifact)
 }
 
 // APIV1UpdateArtifact updates an individual artifact
