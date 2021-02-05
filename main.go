@@ -77,11 +77,6 @@ func main() {
 
 	apiV1.DELETE("artifacts/:id", APIV1DeleteArtifact)
 
-	router.GET("/davelist", func(c *gin.Context) {
-		davelist := []string{"We", "are", "going", "to", "rock", "this", "shit."}
-		c.HTML(http.StatusOK, "davelist.tmpl.html", gin.H{"list": davelist})
-	})
-
 	router.Run(":" + port)
 }
 
