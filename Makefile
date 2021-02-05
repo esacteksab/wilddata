@@ -14,3 +14,7 @@ heroku: $(DOCKER_CMD)
 
 build:
 	go build -v -o bin/wtfizit .
+
+local:
+	make build
+	heroku local
