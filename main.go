@@ -10,6 +10,7 @@ import (
 	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
+	"gorm.io/datatypes"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -18,14 +19,13 @@ import (
 // Artifacts struct
 type Artifacts struct {
 	gorm.Model
-	ID   uint   //`gorm:"primaryKEY" json:"id"`
-	Org  int    //`json:"org"`
-	Name string //`gorm:"not null" json:"name"`
-	// CreatedAt time.Time //`json:"createdat"`
-	// UpdatedAt time.Time //`json:"updatedat"`
-	// DeletedAt time.Time //`json:"deletedat"`
+	ID   uint           //`gorm:"primaryKEY" json:"id"`
+	Org  int            //`json:"org"`
+	Name string         //`gorm:"not null" json:"name"`
+	Tags datatypes.JSON // `json:"tags"`
 }
 
+// InitDb intializes the Database
 func InitDb() *gorm.DB {
 	// Openning file
 	database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
