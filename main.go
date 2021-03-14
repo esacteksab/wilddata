@@ -16,8 +16,8 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-// Artifacts struct
-type Artifacts struct {
+// Assets struct
+type Assets struct {
 	gorm.Model
 	ID   uint           //`gorm:"primaryKEY" json:"id"`
 	Org  int            //`json:"org"`
@@ -36,7 +36,7 @@ func InitDb() *gorm.DB {
 	}
 
 	// Migrate the schema
-	database.AutoMigrate(&Artifacts{})
+	database.AutoMigrate(&Assets{})
 
 	return database
 }
@@ -67,67 +67,67 @@ func main() {
 
 	apiV1 := router.Group("/v1")
 
-	apiV1.GET("artifacts", APIV1GetArtifacts)
+	apiV1.GET("assets", APIV1GetAssets)
 
-	apiV1.POST("artifacts", APIV1AddArtifact)
+	apiV1.POST("assets", APIV1AddAsset)
 
-	apiV1.GET("artifacts/:id", APIV1GetArtifact)
+	apiV1.GET("assets/:id", APIV1GetAsset)
 
-	apiV1.PUT("artifacts/:id", APIV1UpdateArtifact)
+	apiV1.PUT("assets/:id", APIV1UpdateAsset)
 
-	apiV1.DELETE("artifacts/:id", APIV1DeleteArtifact)
+	apiV1.DELETE("assets/:id", APIV1DeleteAsset)
 
 	router.Run(":" + port)
 }
 
-// APIV1GetArtifacts gets all artifacts
-func APIV1GetArtifacts(c *gin.Context) {
+// APIV1GetAssets gets all assets
+func APIV1GetAssets(c *gin.Context) {
 
 	db := InitDb()
 
-	var artifacts []Artifacts
-	fmt.Println(artifacts)
-	db.Find(&artifacts)
-	fmt.Println(artifacts)
-	c.JSON(200, artifacts)
+	var assets []Assets
+	fmt.Println(assets)
+	db.Find(&assets)
+	fmt.Println(assets)
+	c.JSON(200, assets)
 }
 
-// APIV1AddArtifact adds an artifact
-func APIV1AddArtifact(c *gin.Context) {
+// APIV1AddAsset adds an asset
+func APIV1AddAsset(c *gin.Context) {
 
 	db := InitDb()
 
-	var artifacts Artifacts
-	c.BindJSON(&artifacts)
-	fmt.Println(artifacts)
-	db.Create(&artifacts)
-	fmt.Println(artifacts)
-	c.JSON(201, gin.H{"success": artifacts})
+	var assets Assets
+	c.BindJSON(&assets)
+	fmt.Println(assets)
+	db.Create(&assets)
+	fmt.Println(assets)
+	c.JSON(201, gin.H{"success": assets})
 }
 
-// APIV1GetArtifact gets an individual artifact
-func APIV1GetArtifact(c *gin.Context) {
+// APIV1GetAsset gets an individual asset
+func APIV1GetAsset(c *gin.Context) {
 
 	db := InitDb()
 
-	var artifact Artifacts
+	var asset Assets
 	id := c.Params.ByName("id")
 
 	sid, _ := strconv.Atoi(id)
 
-	db.Find(&artifact, "org = ?", sid)
-	fmt.Println(artifact)
-	c.JSON(200, artifact)
+	db.Find(&asset, "org = ?", sid)
+	fmt.Println(asset)
+	c.JSON(200, asset)
 }
 
-// APIV1UpdateArtifact updates an individual artifact
-func APIV1UpdateArtifact(c *gin.Context) {
+// APIV1UpdateAsset updates an individual asset
+func APIV1UpdateAsset(c *gin.Context) {
 	id := c.Param("id")
 	c.JSON(200, gin.H{"method": "PUT", "id": id})
 }
 
-// APIV1DeleteArtifact deletes an individual artifact
-func APIV1DeleteArtifact(c *gin.Context) {
+// APIV1DeleteAsset deletes an individual asset
+func APIV1DeleteAsset(c *gin.Context) {
 	id := c.Param("id")
 	c.JSON(200, gin.H{"method": "DELETE", "id": id})
 }
