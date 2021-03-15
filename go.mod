@@ -7,6 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.4.0
 	github.com/heroku/x v0.0.0-20171004170240-705849e307dd
 	github.com/mattn/go-sqlite3 v1.14.6 // indirect
+	golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 	gorm.io/datatypes v1.0.0
 	gorm.io/driver/sqlite v1.1.4
 	gorm.io/gorm v1.20.12
