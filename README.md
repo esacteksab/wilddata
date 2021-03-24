@@ -11,7 +11,7 @@ We'll figure out a pithy description soon.
   - Requires running `go get gorm.io/datatypes` and then running `go build --tags json1`
     - You may also need to run `go mod vendor` once to appease the Go packaging gods.
 - Locally requires two environment variables
-  - `export PORT=5000`
+  - `export PORT=3000`
   - `export SENTRY_DSN='foo'`
 
 ### Build
