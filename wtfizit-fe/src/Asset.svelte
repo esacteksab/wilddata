@@ -1,10 +1,6 @@
 <script>
-import Assets from "./Assets.svelte";
-
     // create a prop
     export let asset;
-    //console.log(asset.Tags)
-    console.log(asset.Tags[0])
 </script>
 
 
