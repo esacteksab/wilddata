@@ -5,7 +5,7 @@
     export let assets = [];
 
 onMount(async () => {
-    await fetch(`http://localhost:3000/v1/artifacts`)
+    await fetch(`http://localhost:5000/v1/assets`)
     .then(r => r.json())
     .then(data => {
         assets = data;
@@ -16,13 +16,11 @@ onMount(async () => {
 </script>
 
 {#if assets}
-    {#each assets as asset }
     <ul>
-        <li>
+    {#each assets as asset }
             <Asset {asset} />
-        </li>
-    </ul>
     {/each}
+    </ul>
 {:else}
     <p class="loading">loading...</p>
 {/if}

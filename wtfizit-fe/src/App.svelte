@@ -6,7 +6,7 @@
   let asset;
 </script>
 
-<h1>The Seven Assets Svelte App</h1>
+<h1>Assets</h1>
 <main>
     <Assets {assets} />
 </main>

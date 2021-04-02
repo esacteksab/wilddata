@@ -1,27 +1,34 @@
 <script>
+import Assets from "./Assets.svelte";
+
     // create a prop
     export let asset;
+    //console.log(asset.Tags)
+    console.log(asset.Tags[0])
 </script>
 
 
 <foo>
-    <h1>Asset </h1>
     <small>
         Name: <b>{asset.Name}</b> <br/>
         Org: <b>{asset.Org}</b> <br/>
         {#if asset.Tags}
         Tags: 
-            {#each asset.Tags as tag}
-            <ul>
+        <ul>
+            {#each Object.keys(asset.Tags[0]) as key}
             <li>
-                <b>md5sum: </b>{tag.md5sum}</li>
-            
-            <li>
-                <b>sha256sum: </b>{tag.sha256sum}</li>
-            </ul>
+            {#each Object.values(asset.Tags) as value}
+              <b>{key}:</b>
+            {#each Object.values(value[key]) as tag}
+                {tag}
             {/each}
-            {/if}
+             <br />
+            {/each}
+            {/each}
+        </ul>
+        {/if}
     </small><br/>
+    <hr />
 </foo>
 
 <style>
