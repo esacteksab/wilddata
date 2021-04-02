@@ -31,9 +31,4 @@
   foo {
     margin: 0 0 1em 0;
   }
-  h1 {
-    font-size: 1.4em;
-    margin: 0;
-    display: block;
-  }
 </style>
