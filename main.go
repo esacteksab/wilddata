@@ -11,20 +11,11 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
-	"gorm.io/datatypes"
+	"gitlab.com/esacteksab/wtfizit/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
-
-// Assets struct
-type Assets struct {
-	gorm.Model
-	ID   uint           //`gorm:"primaryKEY" json:"id"`
-	Org  int            //`json:"org"`
-	Name string         //`gorm:"not null" json:"name"`
-	Tags datatypes.JSON // `json:"tags"`
-}
 
 // InitDb intializes the Database
 func InitDb() *gorm.DB {
@@ -37,7 +28,7 @@ func InitDb() *gorm.DB {
 	}
 
 	// Migrate the schema
-	database.AutoMigrate(&Assets{})
+	database.AutoMigrate(&models.Assets{})
 
 	return database
 }
@@ -89,10 +80,8 @@ func APIV1GetAssets(c *gin.Context) {
 
 	db := InitDb()
 
-	var assets []Assets
-	fmt.Println(assets)
+	var assets []models.Assets
 	db.Find(&assets)
-	fmt.Println(assets)
 	c.JSON(200, assets)
 }
 
@@ -101,7 +90,7 @@ func APIV1AddAsset(c *gin.Context) {
 
 	db := InitDb()
 
-	var assets Assets
+	var assets models.Assets
 	c.BindJSON(&assets)
 	fmt.Println(assets)
 	db.Create(&assets)
@@ -114,7 +103,7 @@ func APIV1GetAsset(c *gin.Context) {
 
 	db := InitDb()
 
-	var asset Assets
+	var asset models.Assets
 	id := c.Params.ByName("id")
 
 	sid, _ := strconv.Atoi(id)
