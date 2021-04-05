@@ -29,6 +29,7 @@ func InitDb() *gorm.DB {
 
 	// Migrate the schema
 	database.AutoMigrate(&models.Assets{})
+	database.AutoMigrate(&models.Orgs{})
 
 	return database
 }
@@ -72,6 +73,18 @@ func main() {
 
 	apiV1.DELETE("assets/:id", APIV1DeleteAsset)
 
+	apiV1.GET("orgs", APIV1GetOrgs)
+
+	apiV1.POST("orgs", APIV1AddOrg)
+
+	apiV1.GET("orgs/:id", APIV1GetOrg)
+
+	apiV1.PUT("orgs/:id", APIV1UpdateOrg)
+
+	apiV1.DELETE("orgs/:id", APIV1DeleteOrg)
+
+	apiV1.GET("orgs:id/assets", APIV1GetOrgAssets)
+
 	router.Run(":" + port)
 }
 
@@ -106,9 +119,11 @@ func APIV1GetAsset(c *gin.Context) {
 	var asset models.Assets
 	id := c.Params.ByName("id")
 
+	// id above is a string, we need an int
 	sid, _ := strconv.Atoi(id)
 
-	db.Find(&asset, "org = ?", sid)
+	// SELECT * from Assets where Org = `id`
+	db.Find(&asset, "id = ?", sid)
 	fmt.Println(asset)
 	c.JSON(200, asset)
 }
@@ -121,6 +136,70 @@ func APIV1UpdateAsset(c *gin.Context) {
 
 // APIV1DeleteAsset deletes an individual asset
 func APIV1DeleteAsset(c *gin.Context) {
+	id := c.Param("id")
+	c.JSON(200, gin.H{"method": "DELETE", "id": id})
+}
+
+// APIV1GetOrgs gets all assets
+func APIV1GetOrgs(c *gin.Context) {
+
+	db := InitDb()
+
+	var assets []models.Orgs
+	db.Find(&assets)
+	c.JSON(200, assets)
+}
+
+// APIV1AddOrg adds an Org
+func APIV1AddOrg(c *gin.Context) {
+
+	db := InitDb()
+
+	var orgs models.Orgs
+	c.BindJSON(&orgs)
+
+	db.Create(&orgs)
+
+	c.JSON(201, gin.H{"success": orgs})
+}
+
+// APIV1GetOrg gets an individual Org
+func APIV1GetOrg(c *gin.Context) {
+
+	db := InitDb()
+
+	var org models.Orgs
+	id := c.Params.ByName("id")
+
+	// SELECT * from Orgs where ID = `id`
+	db.Find(&org, id)
+	c.JSON(200, org)
+}
+
+// APIV1GetOrgAssets gets an Org's Assets
+func APIV1GetOrgAssets(c *gin.Context) {
+	db := InitDb()
+
+	var asset models.Assets
+	id := c.Params.ByName("id")
+
+	// id above is a string, we need an int
+	sid, _ := strconv.Atoi(id)
+
+	// SELECT * from Assets where Org = `id`
+	db.Find(&asset, "org = ?", sid)
+	fmt.Println(asset)
+	c.JSON(200, asset)
+}
+
+// APIV1UpdateOrg updates an individual org
+func APIV1UpdateOrg(c *gin.Context) {
+	id := c.Param("id")
+	c.JSON(200, gin.H{"method": "PUT", "id": id})
+}
+
+// APIV1DeleteOrg deletes an individual org
+func APIV1DeleteOrg(c *gin.Context) {
 	id := c.Param("id")
 	c.JSON(200, gin.H{"method": "DELETE", "id": id})
 }
