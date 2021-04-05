@@ -35,7 +35,7 @@ func InitDb() *gorm.DB {
 
 func main() {
 
-	port := os.Getenv("PORT")
+	port := os.Getenv("GOPORT")
 
 	sentryDSN := os.Getenv("SENTRY_DSN")
 	// To initialize Sentry's handler, you need to initialize Sentry itself beforehand
@@ -50,7 +50,7 @@ func main() {
 	}
 
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		log.Fatal("$GOPORT must be set")
 	}
 
 	router := gin.Default()
