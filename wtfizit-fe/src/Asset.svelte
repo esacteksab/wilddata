@@ -4,13 +4,13 @@
 </script>
 
 
-<foo>
-    <small>
+<foo class="py-4 text-lg">
+
         Name: <b>{asset.Name}</b> <br/>
         Org: <b>{asset.Org}</b> <br/>
         {#if asset.Tags}
         Tags: 
-        <ul>
+        <ul class="px-2 py-4">
             {#each Object.keys(asset.Tags[0]) as key}
             <li>
             {#each Object.values(asset.Tags) as value}
@@ -23,12 +23,6 @@
             {/each}
         </ul>
         {/if}
-    </small><br/>
+<br/>
     <hr />
 </foo>
-
-<style>
-  foo {
-    margin: 0 0 1em 0;
-  }
-</style>
