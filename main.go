@@ -83,7 +83,7 @@ func main() {
 
 	apiV1.DELETE("orgs/:id", APIV1DeleteOrg)
 
-	//apiV1.GET("orgs:id/assets", APIV1GetOrgAssets)
+	apiV1.GET("orgs/:id/assets", APIV1GetOrgAssets)
 
 	router.Run(":" + port)
 }
@@ -177,20 +177,21 @@ func APIV1GetOrg(c *gin.Context) {
 }
 
 // APIV1GetOrgAssets gets an Org's Assets
-// func APIV1GetOrgAssets(c *gin.Context) {
-// 	db := InitDb()
+func APIV1GetOrgAssets(c *gin.Context) {
+	db := InitDb()
 
-// 	var asset models.Assets
-// 	id := c.Params.ByName("id")
+	var assets []models.Assets
+	db.Find(&assets)
+	id := c.Params.ByName("id")
 
-// 	// id above is a string, we need an int
-// 	sid, _ := strconv.Atoi(id)
+	// id above is a string, we need an int
+	sid, _ := strconv.Atoi(id)
 
-// 	// SELECT * from Assets where Org = `id`
-// 	db.Find(&asset, "org = ?", sid)
-// 	fmt.Println(asset)
-// 	c.JSON(200, asset)
-// }
+	// SELECT * from Assets where Org = `id`
+	db.Find(&assets, "org = ?", sid)
+	fmt.Println(assets)
+	c.JSON(200, assets)
+}
 
 // APIV1UpdateOrg updates an individual org
 func APIV1UpdateOrg(c *gin.Context) {
