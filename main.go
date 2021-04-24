@@ -184,11 +184,8 @@ func APIV1GetOrgAssets(c *gin.Context) {
 	db.Find(&assets)
 	id := c.Params.ByName("id")
 
-	// id above is a string, we need an int
-	sid, _ := strconv.Atoi(id)
-
 	// SELECT * from Assets where Org = `id`
-	db.Find(&assets, "org = ?", sid)
+	db.Find(&assets, "org = ?", id)
 	fmt.Println(assets)
 	c.JSON(200, assets)
 }
