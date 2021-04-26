@@ -1,8 +1,17 @@
-<main><h1>Orgs!</h1></main>>
+<script>
+    import Orgs from "$lib/Orgs.svelte";
+    let orgs;
+  </script>
+  
+  
+  <h1 class="text-8xl">Orgs</h1>
+  <main>
+      <Orgs {orgs} />
+  </main>
 
-<style style lang="postcss">
+  <style style lang="postcss">
 	main {
-		@apply text-center;
+		/* @apply text-center; */
 		@apply p-4;
 		@apply mx-auto;
 	}
