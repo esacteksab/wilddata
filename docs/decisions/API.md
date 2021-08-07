@@ -7,13 +7,13 @@
   * /Orgs
 * I want to GET specific information about an individual Org
   * SELECT Org FROM Orgs WHERE ID = $ID;
-  * /Orgs:id
+  * /Orgs/:id
 * I want to POST and create an Org
   * /Orgs
 * I want to PUT updates to an Org
-  * /Orgs:id
+  * /Orgs/:id
 * I want to DELETE an Org
-  * /Orgs:id
+  * /Orgs/:id
 
 ## Orgs have Groups
 
@@ -22,13 +22,13 @@
   * /Groups
 * I want to GET specific information about an individual Group
   * SELECT Group FROM Groups WHERE ID = $ID;
-  * /Groups:id
+  * /Groups/:id
 * I want to POST and create a Group
   * /Groups
 * I want to PUT updates to a Group
-  * /Groups:id
+  * /Groups/:id
 * I want to DELETE a Group
-  /Groups:id
+  /Groups/:id
 
 ## Groups have Users
 
@@ -36,24 +36,23 @@
   * /Users
 * I want to GET a User
   * SELECT User FROM Users WHERE ID = $ID;
-  * /Users:id
+  * /Users/:id
 * I want to GET all Users
   * SELECT * FROM Users;
   * /Users
 * I want to PUT updates to a User
-  * /Users:id
+  * /Users/:id
 * I want to DELETE a User
-  * /Users:id
+  * /Users/:id
 
 ## Orgs have Assets
 
+* I want to POST to create an Asset
+  * /Assets
+* I want to 
 * I want to GET an Org's Assets
   * SELECT * FROM Assets WHERE ORG_ID = $ID;
-  * / TBD ** BRAIN FART **
-    * /Orgs/:id/Assets (Gets All of an Org's Assets) -- This Conflicts with /Orgs/:id above
-      * Possible Solution: [Here](https://github.com/gin-gonic/gin/issues/1157#issuecomment-419606993)
-    * /Orgs/Assets/:id (Gets information about an Org's specific Asset) -- This is Redundant to /Assets/:id
-    * /Assets?org_id=$ID (Nothing else above uses a query parameter)
+  * /Orgs/:id/Assets
 * I want to GET all Assets
   * SELECT * FROM Assets;
   * /Assets
