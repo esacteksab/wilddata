@@ -24,7 +24,7 @@ You can use a VSCode extension called [rest-client](https://marketplace.visualst
 - `go run main.go`
 
 ```shell
-cd wtfizit-fe
+cd ssfe
 npm run dev
 ```
 
