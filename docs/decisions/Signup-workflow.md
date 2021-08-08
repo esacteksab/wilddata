@@ -53,3 +53,7 @@ When a user creates an org, a few things need to happen:
 Much like the individual workflow, we will want to verify the email address. We can take a step further and parse the email to ensure the tld matches the org name or require a DNS TXT record that shows they are in control of that org.
 
 Much like an individual, we will do an N number day/week trial to allow them and their team to take the product for a spin. We will _not_ collect payment information
+
+## Pictures!
+
+![workflow-for-individiual-and-organization](./workflow-1.png "Sign-up Workflow")
