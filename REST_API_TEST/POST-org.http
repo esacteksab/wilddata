@@ -2,7 +2,7 @@ POST http://localhost:5000/v1/orgs HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id": 7, 
-    "Name": "Seven Inc.",
-    "Email": "admin@six.six"
+    "Id": 9, 
+    "Name": "foo",
+    "Email": "admin@foo.foo"
 }

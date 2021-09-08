@@ -77,13 +77,13 @@ func main() {
 
 	apiV1.POST("orgs", APIV1AddOrg)
 
-	apiV1.GET("orgs/:id", APIV1GetOrg)
+	apiV1.GET("orgs/:name", APIV1GetOrg)
 
 	apiV1.PUT("orgs/:id", APIV1UpdateOrg)
 
 	apiV1.DELETE("orgs/:id", APIV1DeleteOrg)
 
-	apiV1.GET("orgs/:id/assets", APIV1GetOrgAssets)
+	apiV1.GET("orgs/:name/assets", APIV1GetOrgAssets)
 
 	router.Run(":" + port)
 }
@@ -169,10 +169,10 @@ func APIV1GetOrg(c *gin.Context) {
 	db := InitDb()
 
 	var org models.Orgs
-	id := c.Params.ByName("id")
+	name := c.Params.ByName("name")
 
-	// SELECT * from Orgs where ID = `id`
-	db.Find(&org, id)
+	// SELECT * from Orgs where name = `name`
+	db.Where("name = ?", name).Find(&org)
 	c.JSON(200, org)
 }
 
