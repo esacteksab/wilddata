@@ -182,10 +182,10 @@ func APIV1GetOrgAssets(c *gin.Context) {
 
 	var assets []models.Assets
 	db.Find(&assets)
-	id := c.Params.ByName("id")
+	name := c.Params.ByName("name")
 
 	// SELECT * from Assets where Org = `id`
-	db.Find(&assets, "org = ?", id)
+	db.Find(&assets, "org = ?", name).Find(&assets)
 	fmt.Println(assets)
 	c.JSON(200, assets)
 }
