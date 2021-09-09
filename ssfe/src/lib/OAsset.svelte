@@ -1,13 +1,13 @@
 <script>
     // create a prop
-    export let asset;
+    export let assets;
 </script>
 
 
 <foo class="py-4 text-lg">
 
-        Name: <b><a href="assets/{asset.Name}">{asset.Name}</a></b> <br/>
-        Org: <b>{asset.Org}</b> <br/>
+        Name: <b><a href="assets/{assets}">{assets}</a></b> <br/>
+        <!-- Org: <b>{asset.Org}</b> <br/>
         {#if asset.Tags}
         Tags: 
         <ul class="px-2 py-4">
@@ -22,7 +22,7 @@
             {/each}
             {/each}
         </ul>
-        {/if}
+        {/if} -->
 <br/>
     <hr />
 </foo>
