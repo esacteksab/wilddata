@@ -1,3 +1,4 @@
+import preprocess from "svelte-preprocess";
 // const sveltePreprocess = require('svelte-preprocess');
 // const node = require('@sveltejs/adapter-node');
 // const pkg = require('./package.json');
@@ -31,5 +32,9 @@
 // 	}
 // };
 
-const config = {};
+const config = {
+  preprocess: [preprocess({
+    "postcss": true
+  })]
+};
 export default config;

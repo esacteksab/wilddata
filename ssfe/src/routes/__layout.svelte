@@ -1,5 +1,6 @@
 <script>
-	import '../app.postcss';
+	import "../app.postcss";
+    import '../app.postcss';
 </script>
 
 <nav>
@@ -8,4 +9,5 @@
 	<a href="/asset">Assets</a>
 </nav>
 
-<slot />
+<slot>
+</slot>

@@ -5,9 +5,9 @@ const c = [
 	() => import("../../../src/routes/asset.svelte"),
 	() => import("../../../src/routes/orgs/__layout.svelte"),
 	() => import("../../../src/routes/orgs/index.svelte"),
-	() => import("../../../src/routes/orgs/[name]/index.svelte"),
-	() => import("../../../src/routes/orgs/[name]/assets.svelte"),
-	() => import("../../../src/routes/orgs.svelte")
+	() => import("../../../src/routes/orgs/[id]/index.svelte"),
+	() => import("../../../src/routes/orgs/[id]/assets.svelte"),
+	() => import("../../../src/routes/org.svelte")
 ];
 
 const d = decodeURIComponent;
@@ -22,14 +22,14 @@ export const routes = [
 	// src/routes/orgs/index.svelte
 	[/^\/orgs\/?$/, [c[0], c[4], c[5]], [c[1]]],
 
-	// src/routes/orgs/[name]/index.svelte
-	[/^\/orgs\/([^/]+?)\/?$/, [c[0], c[4], c[6]], [c[1]], (m) => ({ name: d(m[1])})],
+	// src/routes/orgs/[id]/index.svelte
+	[/^\/orgs\/([^/]+?)\/?$/, [c[0], c[4], c[6]], [c[1]], (m) => ({ id: d(m[1])})],
 
-	// src/routes/orgs/[name]/assets.svelte
-	[/^\/orgs\/([^/]+?)\/assets\/?$/, [c[0], c[4], c[7]], [c[1]], (m) => ({ name: d(m[1])})],
+	// src/routes/orgs/[id]/assets.svelte
+	[/^\/orgs\/([^/]+?)\/assets\/?$/, [c[0], c[4], c[7]], [c[1]], (m) => ({ id: d(m[1])})],
 
-	// src/routes/orgs.svelte
-	[/^\/orgs\/?$/, [c[0], c[8]], [c[1]]]
+	// src/routes/org.svelte
+	[/^\/org\/?$/, [c[0], c[8]], [c[1]]]
 ];
 
 // we import the root layout/error components eagerly, so that
