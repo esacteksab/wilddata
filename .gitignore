@@ -2,6 +2,7 @@ wtfizit
 bin/wtfizit
 *.db
 *.docker_build/
+*node_modules/*
 
 # Binaries for programs and plugins
 *.exe
