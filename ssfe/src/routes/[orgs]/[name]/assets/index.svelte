@@ -27,11 +27,11 @@
 	<h1 class="text-8xl">Orgs Assets</h1>
 
 	{#each oassets as asset}
-		<ul class="pb-2 pt-2">
-			Asset Name: <b>{asset.Name}</b> <br/>
+		<div class="">
+			<b class="bg-gray-200 row-span-full">Asset Name: {asset.Name}</b> <br/>
 			{#if asset.Tags}
-			Tags: 
-			<ul class="px-2">
+			<b class="bg-red-100"> Tags: </b>
+			<ul class="px-2 bg-red-200">
 				{#each Object.keys(asset.Tags[0]) as key}
 				<li>
 				{#each Object.values(asset.Tags) as value}
@@ -44,7 +44,7 @@
 				{/each}
 			</ul>
 			{/if}
-		</ul>
+		</div>
 	{/each}
 </main>
 
