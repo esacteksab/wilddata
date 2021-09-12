@@ -4,7 +4,7 @@
 	 */
 
 	export async function load({ page, fetch, session, context }) {
-		const url = `http://localhost:5000/v1/orgs/foo/assets`;
+		const url = `http://localhost:5000/v1/orgs/${page.params.name}/assets`;
 		const res = await fetch(url);
 
         // console.log(url)
@@ -19,16 +19,16 @@
 </script>
 
 <script>
-import Asset from "$lib/Asset.svelte";
-
 	export let oassets;
 </script>
 
 <main>
+
+	<h1 class="text-8xl">Orgs Assets</h1>
+
 	{#each oassets as asset}
 		<ul class="pb-2 pt-2">
-			Name: <b><a href="assets/{asset.Name}">{asset.Name}</a></b> <br/>
-			Org: <b>{asset.Org}</b> <br/>
+			Asset Name: <b>{asset.Name}</b> <br/>
 			{#if asset.Tags}
 			Tags: 
 			<ul class="px-2">
@@ -48,3 +48,36 @@ import Asset from "$lib/Asset.svelte";
 	{/each}
 </main>
 
+<style style lang="postcss">
+	main {
+		/* @apply text-center; */
+		@apply p-4;
+		@apply mx-auto;
+	}
+
+	h1 {
+		@apply text-red-600;
+		@apply uppercase;
+		@apply text-6xl;
+		@apply font-thin;
+		@apply leading-tight;
+		@apply my-16 mx-auto;
+		@apply max-w-xs;
+	}
+
+	p {
+		@apply max-w-xs;
+		@apply my-8 mx-auto;
+		@apply leading-snug;
+	}
+
+	@screen sm {
+		h1 {
+			@apply max-w-none;
+		}
+
+		p {
+			@apply max-w-none;
+		}
+	}
+</style>
