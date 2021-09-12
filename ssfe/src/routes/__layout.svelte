@@ -6,7 +6,7 @@
 <nav>
 	<a href=".">Home</a>
 	<a href="/orgs">Orgs</a>
-	<a href="/asset">Assets</a>
+	<a href="/assets">Assets</a>
 </nav>
 
 <slot>
