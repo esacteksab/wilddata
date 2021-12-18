@@ -1,4 +1,4 @@
-# Barry and Dave's Digital Asset-Tracking Index Of Doom
+# Name TBD
 
 We'll figure out a pithy description soon.
 
