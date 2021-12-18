@@ -5,6 +5,7 @@ We'll figure out a pithy description soon.
 ## Setup
 
 - Clone this repository.
+- Clone the front end [repository](https://github.com/esacteksab/wilddata-fe)
 - Install [Direnv](https://direnv.net/)
   - Ensure you [hook direnv into your shell](https://direnv.net/docs/hook.html)
   - *DO NOT* put API keys, or any secrets in `.envrc` -- use `.envrc.local` which should be excluded in `.gitignore`

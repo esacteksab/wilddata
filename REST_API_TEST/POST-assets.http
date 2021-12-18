@@ -3,13 +3,14 @@ Content-Type: application/json
 
 {
     "Org": "foo", 
-    "Name": "foo-v1.1.0.deb", 
+    "Name": "gizmo", 
     "Tags": 
     [
         {
-            "md5sum": "7890123456b", 
-            "sha256sum": "7890123456c",
-            "foo": "bar3"
+            "md5sum": "69696969696", 
+            "sha256sum": "ateeteeeyesea",
+            "filename": "foo-v1.1.1.deb",
+            "version": "v1.1.1.deb"
         }
     ]
 }
