@@ -22,7 +22,7 @@ func StartGin() {
 		AllowOrigins: []string{"*"},
 	}))
 
-	apiV1 := router.Group("/api/v1")
+	apiV1 := router.Group("/v1")
 	{
 
 		apiV1.GET("assets", assets.APIV1GetAssets)
