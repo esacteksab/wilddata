@@ -2,8 +2,27 @@ package models
 
 import (
 	"gorm.io/datatypes"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
+
+// InitDb intializes the Database
+func InitDb() *gorm.DB {
+	// Openning file
+	database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
+
+	// Error
+	if err != nil {
+		panic(err)
+	}
+
+	// Migrate the schema
+	database.AutoMigrate(&Assets{})
+	database.AutoMigrate(&Orgs{})
+
+	return database
+}
 
 // Assets struct
 type Assets struct {
