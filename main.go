@@ -6,33 +6,15 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/esacteksab/wilddata/models"
 	"github.com/getsentry/sentry-go"
 	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	_ "github.com/heroku/x/hmetrics/onload"
-	"gitlab.com/esacteksab/wtfizit/models"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
 )
 
-// InitDb intializes the Database
-func InitDb() *gorm.DB {
-	// Openning file
-	database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
 
-	// Error
-	if err != nil {
-		panic(err)
-	}
-
-	// Migrate the schema
-	database.AutoMigrate(&models.Assets{})
-	database.AutoMigrate(&models.Orgs{})
-
-	return database
-}
 
 func main() {
 
@@ -91,7 +73,7 @@ func main() {
 // APIV1GetAssets gets all assets
 func APIV1GetAssets(c *gin.Context) {
 
-	db := InitDb()
+	db := models.InitDb()
 
 	var assets []models.Assets
 	db.Find(&assets)
@@ -101,7 +83,7 @@ func APIV1GetAssets(c *gin.Context) {
 // APIV1AddAsset adds an asset
 func APIV1AddAsset(c *gin.Context) {
 
-	db := InitDb()
+	db := models.InitDb()
 
 	var assets models.Assets
 	c.BindJSON(&assets)
@@ -114,7 +96,7 @@ func APIV1AddAsset(c *gin.Context) {
 // APIV1GetAsset gets an individual asset
 func APIV1GetAsset(c *gin.Context) {
 
-	db := InitDb()
+	db := models.InitDb()
 
 	var asset models.Assets
 	id := c.Params.ByName("id")
@@ -143,7 +125,7 @@ func APIV1DeleteAsset(c *gin.Context) {
 // APIV1GetOrgs gets all assets
 func APIV1GetOrgs(c *gin.Context) {
 
-	db := InitDb()
+	db := models.InitDb()
 
 	var assets []models.Orgs
 	db.Find(&assets)
@@ -153,7 +135,7 @@ func APIV1GetOrgs(c *gin.Context) {
 // APIV1AddOrg adds an Org
 func APIV1AddOrg(c *gin.Context) {
 
-	db := InitDb()
+	db := models.InitDb()
 
 	var orgs models.Orgs
 	c.BindJSON(&orgs)
@@ -166,7 +148,7 @@ func APIV1AddOrg(c *gin.Context) {
 // APIV1GetOrg gets an individual Org
 func APIV1GetOrg(c *gin.Context) {
 
-	db := InitDb()
+	db := models.InitDb()
 
 	var org models.Orgs
 	name := c.Params.ByName("name")
@@ -178,7 +160,7 @@ func APIV1GetOrg(c *gin.Context) {
 
 // APIV1GetOrgAssets gets an Org's Assets
 func APIV1GetOrgAssets(c *gin.Context) {
-	db := InitDb()
+	db := models.InitDb()
 
 	var assets []models.Assets
 	db.Find(&assets)

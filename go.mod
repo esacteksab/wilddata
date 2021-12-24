@@ -1,4 +1,4 @@
-module gitlab.com/esacteksab/wtfizit
+module github.com/esacteksab/wilddata
 
 go 1.15
 
