@@ -51,7 +51,7 @@ func APIV1GetOrgAssets(c *gin.Context) {
 	db.Find(&assets)
 	name := c.Params.ByName("name")
 
-	// SELECT * from Assets where Org = `id`
+	// SELECT * from Assets where Org = `name`
 	db.Find(&assets, "org = ?", name).Find(&assets)
 	fmt.Println(assets)
 	c.JSON(200, assets)

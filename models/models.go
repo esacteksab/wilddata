@@ -38,5 +38,15 @@ type Orgs struct {
 	gorm.Model
 	//ID    uint   //`gorm:"primaryKEY" json: "id"`
 	Name  string //`gorm:"not null" json:"name"`
-	EMail string //`gorm:"unique_index";not null" json:"email"`
+	EMail string //`gorm:"unique_index;not null" json:"email"`
+}
+
+// Users struct
+type Users struct {
+	gorm.Model
+	UserName      string //`gorm:"not null" json:"username"`
+	EMail         string //`gorm:"unique_index;not null" json:"email"`
+	EMailVerified *bool  //`gorm:"default:false"`
+	Password      string //`gorm:"not null" json:"password"`
+
 }
