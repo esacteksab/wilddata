@@ -48,8 +48,6 @@ func StartGin() {
 
 		apiV1.GET("orgs/:name/assets", orgs.APIV1GetOrgAssets)
 
-		apiV1.GET("login", auth.APIV1LoginView)
-
 		apiV1.POST("login", auth.APIV1Login)
 
 		apiV1.POST("logout", auth.APIV1Logout)
