@@ -40,3 +40,18 @@ func APIV1AddUser(c *gin.Context) {
 }
 
 // APIV1UpdateUser updates a single user
+
+// APIV1LoginView
+func APIV1LoginView(c *gin.Context) {
+	c.JSON(200, c)
+}
+
+// APIV1Login
+func APIV1Login(c *gin.Context) {
+	c.JSON(200, c)
+}
+
+// APIV1Logout
+func APIV1Logout(c *gin.Context) {
+	c.JSON(200, c)
+}
