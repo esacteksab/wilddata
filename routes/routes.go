@@ -5,6 +5,7 @@ import (
 	"os"
 
 	assets "github.com/esacteksab/wilddata/controllers/assets"
+	auth "github.com/esacteksab/wilddata/controllers/auth"
 	orgs "github.com/esacteksab/wilddata/controllers/orgs"
 	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-contrib/cors"
@@ -46,7 +47,12 @@ func StartGin() {
 		apiV1.DELETE("orgs/:id", orgs.APIV1DeleteOrg)
 
 		apiV1.GET("orgs/:name/assets", orgs.APIV1GetOrgAssets)
+
+		apiV1.POST("login", auth.APIV1Login)
+
+		apiV1.POST("logout", auth.APIV1Logout)
 	}
+
 
 	router.NoRoute(func(c *gin.Context) {
 		c.AbortWithStatus(http.StatusNotFound)
