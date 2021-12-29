@@ -2,8 +2,27 @@ package models
 
 import (
 	"gorm.io/datatypes"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
+
+// InitDb intializes the Database
+func InitDb() *gorm.DB {
+	// Openning file
+	database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
+
+	// Error
+	if err != nil {
+		panic(err)
+	}
+
+	// Migrate the schema
+	database.AutoMigrate(&Assets{})
+	database.AutoMigrate(&Orgs{})
+
+	return database
+}
 
 // Assets struct
 type Assets struct {
@@ -19,5 +38,15 @@ type Orgs struct {
 	gorm.Model
 	//ID    uint   //`gorm:"primaryKEY" json: "id"`
 	Name  string //`gorm:"not null" json:"name"`
-	EMail string //`gorm:"unique_index";not null" json:"email"`
+	EMail string //`gorm:"unique_index;not null" json:"email"`
+}
+
+// Users struct
+type Users struct {
+	gorm.Model
+	UserName      string //`gorm:"not null" json:"username"`
+	EMail         string //`gorm:"unique_index;not null" json:"email"`
+	EMailVerified *bool  //`gorm:"default:false"`
+	Password      string //`gorm:"not null" json:"password"`
+
 }
