@@ -3,7 +3,7 @@ module github.com/esacteksab/wilddata
 go 1.17
 
 require (
-	github.com/getsentry/sentry-go v0.11.0
+	github.com/getsentry/sentry-go v0.12.0
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/heroku/x v0.0.43
