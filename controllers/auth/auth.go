@@ -39,7 +39,7 @@ func APIV1AddUser(c *gin.Context) {
 	c.JSON(200, user)
 }
 
-// APIV1UpdateUser updates a single user
+
 
 // APIV1Login
 func APIV1Login(c *gin.Context) {
