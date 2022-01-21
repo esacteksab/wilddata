@@ -1,5 +1,5 @@
 wtfizit
-bin/wtfizit
+bin/*
 *.db
 *.docker_build/
 *node_modules/*
