@@ -6,7 +6,7 @@ require (
 	github.com/getsentry/sentry-go v0.12.0
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.7.7
-	github.com/heroku/x v0.0.47
+	github.com/heroku/x v0.0.48
 	gorm.io/datatypes v1.0.5
 	gorm.io/driver/sqlite v1.2.6
 	gorm.io/gorm v1.22.5
