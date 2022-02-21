@@ -15,7 +15,7 @@ import (
 func StartGin() {
 
 	port := os.Getenv("GOPORT")
-	
+
 	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(sentrygin.New(sentrygin.Options{}))
@@ -48,11 +48,13 @@ func StartGin() {
 
 		apiV1.GET("orgs/:name/assets", orgs.APIV1GetOrgAssets)
 
-		apiV1.POST("auth/signup", auth.APIV1AddUser)	
+		apiV1.POST("auth/users", auth.APIV1AddUser)
 
 		apiV1.POST("auth/login", auth.APIV1Login)
 
 		apiV1.POST("auth/logout", auth.APIV1Logout)
+
+		apiV1.GET("auth/users", auth.APIV1GetUsers)
 
 	}
 

@@ -10,8 +10,6 @@ import (
 	_ "github.com/heroku/x/hmetrics/onload"
 )
 
-
-
 func main() {
 
 	port := os.Getenv("GOPORT")

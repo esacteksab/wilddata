@@ -18,25 +18,25 @@ func APIV1GetUsers(c *gin.Context) {
 func APIV1GetUser(c *gin.Context) {
 	db := models.InitDb()
 
-	var user models.Users
+	var users models.Users
 
 	name := c.Params.ByName("name")
 
-	db.Where("name = ?", name).Find(&user)
-	c.JSON(200, user)
+	db.Where("name = ?", name).Find(&users)
+	c.JSON(200, users)
 }
 
 // APIV1AddUser adds a single user
 func APIV1AddUser(c *gin.Context) {
 	db := models.InitDb()
 
-	var user models.Users
+	var users models.Users
 
-	c.BindJSON(&user)
+	c.BindJSON(&users)
 
-	db.Create(&user)
+	db.Create(&users)
 
-	c.JSON(200, user)
+	c.JSON(200, users)
 }
 
 

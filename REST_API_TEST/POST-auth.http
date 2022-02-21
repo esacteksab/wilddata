@@ -1,0 +1,10 @@
+POST http://localhost:5000/v1/auth/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "UserName": "user3",
+    "Email": "user3@foo.foo",
+    "CEMail": "user3@foo.foo",
+    "Password": "password3",
+    "CPassword": "password3"
+}

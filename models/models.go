@@ -18,8 +18,9 @@ func InitDb() *gorm.DB {
 	}
 
 	// Migrate the schema
-	database.AutoMigrate(&Assets{})
-	database.AutoMigrate(&Orgs{})
+	database.Debug().AutoMigrate(&Assets{})
+	database.Debug().AutoMigrate(&Orgs{})
+	database.Debug().AutoMigrate(&Users{})
 
 	return database
 }
@@ -38,15 +39,17 @@ type Orgs struct {
 	gorm.Model
 	//ID    uint   //`gorm:"primaryKEY" json: "id"`
 	Name  string //`gorm:"not null" json:"name"`
-	EMail string //`gorm:"unique_index;not null" json:"email"`
+	EMail string //`gorm:"unique_index:uidx_email" json:"email"`
 }
 
 // Users struct
 type Users struct {
 	gorm.Model
-	UserName      string //`gorm:"not null" json:"username"`
-	EMail         string //`gorm:"unique_index;not null" json:"email"`
-	EMailVerified *bool  //`gorm:"default:false"`
-	Password      string //`gorm:"not null" json:"password"`
+	UserName  string //`gorm:"unique;not null" json:"username"`
+	EMail     string //`gorm:"primaryKey;autoIncrement:false;unique_index;not null" json:"email"`
+	CEmail    string //`gorm:"not null" json:"cemail"`
+	VEMail    *bool  //`gorm:"default:true" json:"vemail,omitempty"`
+	Password  string //`gorm:"not null" json:"password"`
+	CPassword string //`gorm:"not null" json:"cpassword"`
 
 }
