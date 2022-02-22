@@ -1,1 +1,1 @@
-GET http://localhost:5000/v1/orgs/7
+GET http://localhost:5000/v1/o/foo
