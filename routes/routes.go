@@ -31,31 +31,33 @@ func StartGin() {
 
 		apiV1.POST("assets", assets.APIV1AddAsset)
 
-		apiV1.GET("assets/:id", assets.APIV1GetAsset)
+		apiV1.GET("a/:id", assets.APIV1GetAsset)
 
-		apiV1.PUT("assets/:id", assets.APIV1UpdateAsset)
+		apiV1.PUT("a/:id", assets.APIV1UpdateAsset)
 
-		apiV1.DELETE("assets/:id", assets.APIV1DeleteAsset)
+		apiV1.DELETE("a/:id", assets.APIV1DeleteAsset)
 
 		apiV1.GET("orgs", orgs.APIV1GetOrgs)
 
 		apiV1.POST("orgs", orgs.APIV1AddOrg)
 
-		apiV1.GET("orgs/:name", orgs.APIV1GetOrg)
+		apiV1.GET("o/:name", orgs.APIV1GetOrg)
 
-		apiV1.PUT("orgs/:id", orgs.APIV1UpdateOrg)
+		apiV1.PUT("o/:id", orgs.APIV1UpdateOrg)
 
-		apiV1.DELETE("orgs/:id", orgs.APIV1DeleteOrg)
+		apiV1.DELETE("o/:id", orgs.APIV1DeleteOrg)
 
-		apiV1.GET("orgs/:name/assets", orgs.APIV1GetOrgAssets)
+		apiV1.GET("o/:name/assets", orgs.APIV1GetOrgAssets)
 
-		apiV1.POST("auth/users", auth.APIV1AddUser)
+		apiV1.GET("u/:name", auth.APIV1GetUser)
+
+		apiV1.POST("users", auth.APIV1AddUser)
 
 		apiV1.POST("auth/login", auth.APIV1Login)
 
 		apiV1.POST("auth/logout", auth.APIV1Logout)
 
-		apiV1.GET("auth/users", auth.APIV1GetUsers)
+		apiV1.GET("users", auth.APIV1GetUsers)
 
 	}
 

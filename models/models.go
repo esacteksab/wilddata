@@ -45,7 +45,7 @@ type Orgs struct {
 // Users struct
 type Users struct {
 	gorm.Model
-	UserName  string //`gorm:"unique;not null" json:"username"`
+	Name  string //`gorm:"unique;not null" json:"name"`
 	EMail     string //`gorm:"primaryKey;autoIncrement:false;unique_index;not null" json:"email"`
 	CEmail    string //`gorm:"not null" json:"cemail"`
 	VEMail    *bool  //`gorm:"default:true" json:"vemail,omitempty"`
