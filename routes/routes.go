@@ -21,6 +21,7 @@ func StartGin() {
 	router.Use(sentrygin.New(sentrygin.Options{}))
 	router.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"*"},
+		AllowMethods: []string{http.MethodGet, http.MethodPatch, http.MethodPost, http.MethodHead, http.MethodDelete, http.MethodOptions},
 	}))
 
 	apiV1 := router.Group("/v1")
@@ -57,7 +58,6 @@ func StartGin() {
 		apiV1.GET("auth/users", auth.APIV1GetUsers)
 
 	}
-
 
 	router.NoRoute(func(c *gin.Context) {
 		c.AbortWithStatus(http.StatusNotFound)
