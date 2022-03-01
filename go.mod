@@ -9,7 +9,7 @@ require (
 	github.com/heroku/x v0.0.50
 	gorm.io/datatypes v1.0.5
 	gorm.io/driver/sqlite v1.3.1
-	gorm.io/gorm v1.23.1
+	gorm.io/gorm v1.23.2
 )
 
 require (
