@@ -1,8 +1,9 @@
+wildata
 wtfizit
 bin/*
 *.db
 *.docker_build/
-*node_modules/*
+
 
 # Binaries for programs and plugins
 *.exe
