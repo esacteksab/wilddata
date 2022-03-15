@@ -1,0 +1,8 @@
+.docker_build
+.github
+.vscode
+REST_API_TEST
+.envrc
+Makefile
+Procfile
+README.md
