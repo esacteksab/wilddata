@@ -39,8 +39,9 @@ jobs:
       with:
         name: wilddata
         path: ./wilddata
-  docker:
 
+  docker:
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
