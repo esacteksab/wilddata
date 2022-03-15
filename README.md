@@ -17,6 +17,10 @@ We'll figure out a pithy description soon.
 
 - `make build`
 
+### Docker Stuff
+
+A Docker container is pushed to Github Packages via `.github/workflows/docker-publish.yml`. By default the `IMAGE_TAG` is the git SHA of the branch. But you can tag a commit with `git tag -a vX.X.X $SHA` then `git push --tags`. This pushing of tags will trigger GitHub Actions to run the workflow and build a Docker container with an `IMAGE_TAG` of the semver from the tag based on that git commit SHA from above.
+
 ## Testing (sort of)
 
 You can use a VSCode extension called [rest-client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). The `.http` files are located in `REST_API_TEST` directory. This makes it a little easier to do a `GET` or a `POST` and it's possible to share.
