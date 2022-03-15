@@ -88,10 +88,6 @@ jobs:
       # Get Go Binary Artifact
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
-        with:
-          name: wilddata
-          path: wilddata
-
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
