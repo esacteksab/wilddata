@@ -5,5 +5,4 @@ REST_API_TEST
 .envrc
 Makefile
 Procfile
-wilddata
 README.md
