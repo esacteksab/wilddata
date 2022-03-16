@@ -1,8 +1,12 @@
 package models
 
 import (
+	"log"
+	"os"
+
+	"github.com/lib/pq"
 	"gorm.io/datatypes"
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )
@@ -10,7 +14,18 @@ import (
 // InitDb intializes the Database
 func InitDb() *gorm.DB {
 	// Openning file
-	database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
+	//database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
+	// pghost := os.Getenv("POSTGRES_HOST")
+	// pguser := os.Getenv("POSTGRES_USER")
+	// pgpwd := os.Getenv("POSTGRES_PASSWORD")
+	// pgdb := os.Getenv("POSTGRES_DB")
+	url := os.Getenv("DATABASE_URL")
+	log.Println(url)
+	dsn, _ := pq.ParseURL(url)
+	log.Printf("DATABASE_URL:%v", dsn)
+
+	// dsn := "host=db user=username password=password dbname=default_database port=5432 sslmode=disable"
+	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
 
 	// Error
 	if err != nil {

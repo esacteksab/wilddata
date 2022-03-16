@@ -1,0 +1,24 @@
+version: '2'
+services:
+  backend:
+    image: ghcr.io/esacteksab/wilddata:v0.0.4
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+  frontend:
+    image: ghcr.io/esacteksab/wilddata-fe:v0.0.1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    volumes:
+      - /var/tmp/db-data/:/var/lib/postgresql/data/

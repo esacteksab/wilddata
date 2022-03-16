@@ -3,6 +3,8 @@
 .vscode
 REST_API_TEST
 .envrc
+.env
 Makefile
 Procfile
 README.md
+db-data

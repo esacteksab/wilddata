@@ -13,7 +13,6 @@ import (
 func main() {
 
 	port := os.Getenv("GOPORT")
-
 	sentryDSN := os.Getenv("SENTRY_DSN")
 	// To initialize Sentry's handler, you need to initialize Sentry itself beforehand
 	if err := sentry.Init(sentry.ClientOptions{

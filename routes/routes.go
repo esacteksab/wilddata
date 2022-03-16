@@ -19,10 +19,11 @@ func StartGin() {
 	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(sentrygin.New(sentrygin.Options{}))
-	router.Use(cors.New(cors.Config{
-		AllowOrigins: []string{"*"},
-		AllowMethods: []string{http.MethodGet, http.MethodPatch, http.MethodPost, http.MethodHead, http.MethodDelete, http.MethodOptions},
-	}))
+	router.Use(cors.Default())
+	// router.Use(cors.New(cors.Config{
+	// 	AllowOrigins: []string{"*"},
+	// 	AllowMethods: []string{http.MethodGet, http.MethodPatch, http.MethodPost, http.MethodHead, http.MethodDelete, http.MethodOptions},
+	// }))
 
 	apiV1 := router.Group("/v1")
 	{
