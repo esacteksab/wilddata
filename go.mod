@@ -7,7 +7,7 @@ require (
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/heroku/x v0.0.50
-	github.com/lib/pq v1.10.2
+	github.com/lib/pq v1.10.4
 	gorm.io/datatypes v1.0.6
 	gorm.io/driver/postgres v1.3.1
 	gorm.io/gorm v1.23.3
