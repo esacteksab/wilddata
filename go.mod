@@ -10,7 +10,7 @@ require (
 	github.com/lib/pq v1.10.2
 	gorm.io/datatypes v1.0.6
 	gorm.io/driver/postgres v1.3.1
-	gorm.io/gorm v1.23.2
+	gorm.io/gorm v1.23.3
 )
 
 require (
