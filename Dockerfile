@@ -1,4 +1,4 @@
-FROM golang:1.17.8-buster as build-env
+FROM golang:1.18-buster as build-env
 
 COPY wilddata /go/wilddata
 
