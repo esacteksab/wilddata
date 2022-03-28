@@ -1,7 +1,7 @@
 version: '2'
 services:
   backend:
-    image: ghcr.io/esacteksab/wilddata:v0.0.4
+    image: ghcr.io/esacteksab/wilddata:local
     ports:
       - "5000:5000"
     env_file:
@@ -22,3 +22,9 @@ services:
       - .env
     volumes:
       - /var/tmp/db-data/:/var/lib/postgresql/data/
+  redis:
+    image: redis:6.2
+    ports:
+      - "6379:6379"
+    env_file:
+      - .env

@@ -1,0 +1,3 @@
+curl --request GET \
+  --url http://localhost:5000/auth/ping \
+  --header 'user-agent: vscoderestclient' --header 'Cookie: mysession=MTY0ODQ5ODcwOXxOd3dBTkUxVE0xcElVazlQV2pOYVJETTNTMHBJV0ZsWU1rTlJURFl6V2tsRlExWkNSVUZhUlRVeVJsQkdRVnBZUVZsUlVVMVJSMUU9fDcOc2Rkg59reariZwED8pCr702LuqCnt7vZ8748vL8R'

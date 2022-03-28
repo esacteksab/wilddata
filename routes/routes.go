@@ -9,21 +9,30 @@ import (
 	orgs "github.com/esacteksab/wilddata/controllers/orgs"
 	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
+)
+
+var (
+	//RedisHost ...
+	RedisHost = os.Getenv("REDIS_HOST")
+	//RedisPort ...
+	RedisPort = os.Getenv("REDIS_PORT")
 )
 
 func StartGin() {
 
 	port := os.Getenv("GOPORT")
 
+	store, _ := redis.NewStore(32, "tcp", RedisHost+":"+RedisPort, "", []byte("secret"))
+
+
 	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(sentrygin.New(sentrygin.Options{}))
 	router.Use(cors.Default())
-	// router.Use(cors.New(cors.Config{
-	// 	AllowOrigins: []string{"*"},
-	// 	AllowMethods: []string{http.MethodGet, http.MethodPatch, http.MethodPost, http.MethodHead, http.MethodDelete, http.MethodOptions},
-	// }))
+	router.Use(sessions.Sessions("mysession", store))
 
 	apiV1 := router.Group("/v1")
 	{
@@ -54,12 +63,19 @@ func StartGin() {
 
 		apiV1.POST("users", auth.APIV1AddUser)
 
-		apiV1.POST("auth/login", auth.APIV1Login)
+		apiV1.POST("login", auth.APIV1Login)
 
-		apiV1.POST("auth/logout", auth.APIV1Logout)
+		apiV1.POST("logout", auth.APIV1Logout)
 
 		apiV1.GET("users", auth.APIV1GetUsers)
 
+	}
+
+	authenticated := router.Group("/auth")
+	authenticated.Use(auth.AuthRequired)
+
+	{
+		authenticated.GET("ping", auth.Ping)
 	}
 
 	router.NoRoute(func(c *gin.Context) {
