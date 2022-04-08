@@ -10,7 +10,7 @@ require (
 	github.com/heroku/x v0.0.50
 	github.com/lib/pq v1.10.4
 	gorm.io/datatypes v1.0.6
-	gorm.io/driver/postgres v1.3.3
+	gorm.io/driver/postgres v1.3.4
 	gorm.io/gorm v1.23.4
 )
 
