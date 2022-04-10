@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
   frontend:
-    image: ghcr.io/esacteksab/wilddata-fe:v0.0.1
+    image: ghcr.io/esacteksab/wilddata-fe:local
     ports:
       - "3000:3000"
     depends_on:
@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
     volumes:
-      - /var/tmp/db-data/:/var/lib/postgresql/data/
+      - ./db-data:/var/lib/postgresql/data/
   redis:
     image: redis:6.2
     ports:

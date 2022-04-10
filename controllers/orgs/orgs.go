@@ -2,9 +2,11 @@ package orgs
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/esacteksab/wilddata/models"
 	"github.com/gin-gonic/gin"
+	"github.com/gobeam/stringy"
 )
 
 // APIV1GetOrgs gets all assets
@@ -23,7 +25,20 @@ func APIV1AddOrg(c *gin.Context) {
 	db := models.InitDb()
 
 	var orgs models.Orgs
+
 	c.BindJSON(&orgs)
+
+	n := stringy.New(orgs.Name)
+	// Take a name like Acme Inc. and convert
+	// it to acmeinc
+	dn := strings.ToLower(n.CamelCase("?", ""))
+
+	// We replace DisplayName which is initially empty
+	// with Name which may be Acme Inc.
+	db.Model(&orgs).Update("DisplayName", orgs.Name)
+	// Replace Name which was originally Acme Inc.
+	// with acmeinc
+	db.Model(&orgs).Update("Name", dn)
 
 	db.Create(&orgs)
 
