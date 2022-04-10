@@ -52,8 +52,8 @@ type Assets struct {
 // Orgs Struct
 type Orgs struct {
 	gorm.Model
-	//ID    uint   //`gorm:"primaryKEY" json: "id"`
 	Name  string //`gorm:"not null" json:"name"`
+	DisplayName string //`gorm: "not null"`
 	EMail string //`gorm:"unique_index:uidx_email" json:"email"`
 }
 
