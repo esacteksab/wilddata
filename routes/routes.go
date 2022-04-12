@@ -37,13 +37,15 @@ func StartGin() {
 	apiV1 := router.Group("/v1")
 	{
 
-		apiV1.GET("assets", assets.APIV1GetAssets)
+		apiV1.GET("assets", assets.APIV1GetAllAssets)
 
 		apiV1.POST("assets", assets.APIV1AddAsset)
 
-		apiV1.GET("a/:id", assets.APIV1GetAsset)
+		// Get all assets with the name "name"
+		apiV1.GET("a/:name", assets.APIV1GetAsset)
 
-		apiV1.PUT("a/:id", assets.APIV1UpdateAsset)
+		// assets are atomic. We don't want to allow updates
+		//apiV1.PUT("a/:name", assets.APIV1UpdateAsset)
 
 		apiV1.DELETE("a/:id", assets.APIV1DeleteAsset)
 
