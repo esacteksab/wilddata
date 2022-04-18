@@ -7,6 +7,7 @@ require (
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-gonic/gin v1.7.7
+	github.com/gobeam/stringy v0.0.5
 	github.com/heroku/x v0.0.50
 	github.com/lib/pq v1.10.5
 	gorm.io/datatypes v1.0.6
@@ -21,7 +22,6 @@ require (
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.10.1 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
-	github.com/gobeam/stringy v0.0.5 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/gomodule/redigo v2.0.0+incompatible // indirect
 	github.com/gorilla/context v1.1.1 // indirect
