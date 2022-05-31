@@ -22,10 +22,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
 
     - name: Set up Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@b22fbbc2921299758641fab08929b4ac52b32923 # tag=v3
       with:
         go-version: 1.17
 
@@ -33,7 +33,7 @@ jobs:
       run: go build -v -o wilddata .
 
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.0
+      uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3.1.0
       with:
         name: wilddata
         path: wilddata
@@ -50,7 +50,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
@@ -85,7 +85,7 @@ jobs:
 
       # Get Go Binary Artifact
       - name: Download a Build Artifact
-        uses: actions/download-artifact@v3.0.0
+        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741 # tag=v3.0.0
         with:
           name: wilddata
 
