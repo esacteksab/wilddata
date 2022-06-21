@@ -1,3 +1,8 @@
-curl --request GET \
-  --url http://localhost:5000/auth/ping \
-  --header 'user-agent: vscoderestclient' --header 'Cookie: mysession=MTY0ODQ5ODcwOXxOd3dBTkUxVE0xcElVazlQV2pOYVJETTNTMHBJV0ZsWU1rTlJURFl6V2tsRlExWkNSVUZhUlRVeVJsQkdRVnBZUVZsUlVVMVJSMUU9fDcOc2Rkg59reariZwED8pCr702LuqCnt7vZ8748vL8R'
+@host = localhost:5000
+
+// Access a Secured API Endpoint
+GET http://{{host}}/auth/ping HTTP/1.1
+content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTU4MjY0MTMsIm5hbWUiOiJ1c2VyMyIsImVtYWlsIjoidXNlcjNAZm9vLmZvbyJ9.T6MORVKgt2cqrsNEhG1v44TbEPTpIAXGYjpPlQ197xA
+
+###

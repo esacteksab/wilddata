@@ -34,13 +34,27 @@ func APIV1GetUser(c *gin.Context) {
 func APIV1AddUser(c *gin.Context) {
 	db := models.InitDb()
 
-	var users models.Users
+	var user models.Users
 
-	c.BindJSON(&users)
+	if err := c.ShouldBindJSON(&user); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.Abort()
+		return
+	}
 
-	db.Create(&users)
+	if err := user.HashPassword(user.Password); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.Abort()
+		return
+	}
+	u := db.Create(&user)
+	if u.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": u.Error.Error()})
+		c.Abort()
+		return
+	}
 
-	c.JSON(200, users)
+	c.JSON(http.StatusCreated, gin.H{"userID": user.ID, "email": user.EMail, "name": user.Name})
 }
 
 // APIV1Login
@@ -71,7 +85,7 @@ func APIV1Login(c *gin.Context) {
 		}
 
 	} else {
-		log.Fatal("You really fucked up! How did you get here?!")
+		log.Println("You really fucked up! How did you get here?!")
 
 	}
 }

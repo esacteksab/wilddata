@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/lib/pq"
+	"golang.org/x/crypto/bcrypt"
 	"gorm.io/datatypes"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -13,12 +14,7 @@ import (
 
 // InitDb intializes the Database
 func InitDb() *gorm.DB {
-	// Openning file
-	//database, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{Logger: logger.Default.LogMode(logger.Silent)})
-	// pghost := os.Getenv("POSTGRES_HOST")
-	// pguser := os.Getenv("POSTGRES_USER")
-	// pgpwd := os.Getenv("POSTGRES_PASSWORD")
-	// pgdb := os.Getenv("POSTGRES_DB")
+
 	url := os.Getenv("DATABASE_URL")
 	log.Println(url)
 	dsn, _ := pq.ParseURL(url)
@@ -67,4 +63,22 @@ type Users struct {
 	Password  string //`gorm:"not null" json:"password"`
 	CPassword string //`gorm:"not null" json:"cpassword"`
 
+}
+
+func (user *Users) HashPassword(password string) error {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	if err != nil {
+		return err
+	}
+	user.Password = string(bytes)
+	return nil
+}
+func (user *Users) CheckPassword(providedPassword string) error {
+	log.Println(user.Password)
+	log.Println(providedPassword)
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(providedPassword))
+	if err != nil {
+		return err
+	}
+	return nil
 }

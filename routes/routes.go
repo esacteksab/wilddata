@@ -7,6 +7,8 @@ import (
 	assets "github.com/esacteksab/wilddata/controllers/assets"
 	auth "github.com/esacteksab/wilddata/controllers/auth"
 	orgs "github.com/esacteksab/wilddata/controllers/orgs"
+	"github.com/esacteksab/wilddata/controllers/token"
+	"github.com/esacteksab/wilddata/middlewares"
 	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/sessions"
@@ -71,10 +73,12 @@ func StartGin() {
 
 		apiV1.GET("users", auth.APIV1GetUsers)
 
+		apiV1.POST("token", token.GenerateToken)
+
 	}
 
 	authenticated := router.Group("/auth")
-	authenticated.Use(auth.AuthRequired)
+	authenticated.Use(middlewares.Auth())
 
 	{
 		authenticated.GET("ping", auth.Ping)
