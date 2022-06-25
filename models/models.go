@@ -65,6 +65,7 @@ type Users struct {
 
 }
 
+// Password Stuff
 func (user *Users) HashPassword(password string) error {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	if err != nil {
@@ -74,9 +75,25 @@ func (user *Users) HashPassword(password string) error {
 	return nil
 }
 func (user *Users) CheckPassword(providedPassword string) error {
-	log.Println(user.Password)
-	log.Println(providedPassword)
 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(providedPassword))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Confirmation Password Stuff
+// TODO This is not DRY
+func (user *Users) HashCPassword(password string) error {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	if err != nil {
+		return err
+	}
+	user.CPassword = string(bytes)
+	return nil
+}
+func (user *Users) CheckCPassword(providedPassword string) error {
+	err := bcrypt.CompareHashAndPassword([]byte(user.CPassword), []byte(providedPassword))
 	if err != nil {
 		return err
 	}
