@@ -92,7 +92,7 @@ func APIV1Login(c *gin.Context) {
 		} else {
 			if result.RowsAffected == 0 {
 				log.Println(result.RowsAffected)
-				c.JSON(http.StatusNotFound, gin.H{"session": "User not found"})
+				c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid Username or Password"})
 			} else {
 				log.Println(result.RowsAffected)
 				log.Println(map[string]interface{}{"message": user.ID})
