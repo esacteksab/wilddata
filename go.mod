@@ -11,7 +11,7 @@ require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/heroku/x v0.0.52
 	github.com/lib/pq v1.10.6
-	golang.org/x/crypto v0.0.0-20220826181053-bd7e27e6170d
+	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90
 	gorm.io/datatypes v1.0.7
 	gorm.io/driver/postgres v1.3.9
 	gorm.io/gorm v1.23.8
