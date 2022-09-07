@@ -10,7 +10,7 @@ require (
 	github.com/gobeam/stringy v0.0.5
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/heroku/x v0.0.52
-	github.com/lib/pq v1.10.6
+	github.com/lib/pq v1.10.7
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90
 	gorm.io/datatypes v1.0.7
 	gorm.io/driver/postgres v1.3.9
