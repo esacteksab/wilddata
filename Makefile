@@ -7,11 +7,10 @@ docker:
 	docker build -t ghcr.io/esacteksab/wilddata:local .
 
 dcbe:
-	docker compose up backend
+	docker-compose up backend
 
 dcd:
-	docker compose down
+	docker-compose down
 
 local:
 	make build
-	heroku local

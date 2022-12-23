@@ -8,12 +8,6 @@ services:
       - .env
     depends_on:
       - db
-  frontend:
-    image: ghcr.io/esacteksab/wilddata-fe:local
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
   db:
     image: postgres:latest
     ports:

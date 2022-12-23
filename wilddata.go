@@ -7,7 +7,6 @@ import (
 
 	"github.com/esacteksab/wilddata/routes"
 	"github.com/getsentry/sentry-go"
-	_ "github.com/heroku/x/hmetrics/onload"
 )
 
 func main() {
