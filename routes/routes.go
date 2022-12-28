@@ -8,33 +8,39 @@ import (
 	auth "github.com/esacteksab/wilddata/controllers/auth"
 	orgs "github.com/esacteksab/wilddata/controllers/orgs"
 	"github.com/esacteksab/wilddata/controllers/token"
-	"github.com/esacteksab/wilddata/middlewares"
 	sentrygin "github.com/getsentry/sentry-go/gin"
 	"github.com/gin-contrib/cors"
-	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/redis"
 	"github.com/gin-gonic/gin"
-)
-
-var (
-	//RedisHost ...
-	RedisHost = os.Getenv("REDIS_HOST")
-	//RedisPort ...
-	RedisPort = os.Getenv("REDIS_PORT")
+	"github.com/supertokens/supertokens-golang/supertokens"
 )
 
 func StartGin() {
 
 	port := os.Getenv("GOPORT")
 
-	store, _ := redis.NewStore(32, "tcp", RedisHost+":"+RedisPort, "", []byte("secret"))
-
-
 	router := gin.Default()
 	router.Use(gin.Logger())
 	router.Use(sentrygin.New(sentrygin.Options{}))
-	router.Use(cors.Default())
-	router.Use(sessions.Sessions("mysession", store))
+	router.Use(cors.New(cors.Config{
+		AllowAllOrigins: false,
+		AllowOrigins:    []string{"http://localhost:port"},
+		AllowMethods:           []string{"GET", "POST", "DELETE", "PUT", "OPTIONS"},
+		AllowHeaders:           append([]string{"content-type"}, supertokens.GetAllCORSHeaders()...),
+		AllowCredentials:       true,
+		ExposeHeaders:          []string{},
+		MaxAge:                 0,
+		AllowWildcard:          false,
+		AllowBrowserExtensions: false,
+		AllowWebSockets:        false,
+		AllowFiles:             false,
+	}))
+	router.Use(func(c *gin.Context){
+		supertokens.Middleware(http.HandlerFunc(
+			func(rw http.ResponseWriter, r *http.Request) {
+				c.Next()
+			})).ServeHTTP(c.Writer, c.Request)
+			c.Abort()
+	})
 
 	apiV1 := router.Group("/v1")
 	{
@@ -76,17 +82,6 @@ func StartGin() {
 		apiV1.POST("token", token.GenerateToken)
 
 	}
-
-	authenticated := router.Group("/auth")
-	authenticated.Use(middlewares.Auth())
-
-	{
-		authenticated.GET("ping", auth.Ping)
-	}
-
-	router.NoRoute(func(c *gin.Context) {
-		c.AbortWithStatus(http.StatusNotFound)
-	})
 
 	router.Run(":" + port)
 }
