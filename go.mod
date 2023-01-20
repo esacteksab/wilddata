@@ -7,7 +7,7 @@ require (
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-contrib/sessions v0.0.5
 	github.com/gin-gonic/gin v1.8.2
-	github.com/gobeam/stringy v0.0.5
+	github.com/gobeam/stringy v0.0.6
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/lib/pq v1.10.7
 	golang.org/x/crypto v0.5.0
