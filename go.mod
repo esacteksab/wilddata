@@ -12,7 +12,7 @@ require (
 	github.com/lib/pq v1.10.7
 	golang.org/x/crypto v0.5.0
 	gorm.io/datatypes v1.1.0
-	gorm.io/driver/postgres v1.4.6
+	gorm.io/driver/postgres v1.4.7
 	gorm.io/gorm v1.24.5
 )
 
