@@ -13,7 +13,7 @@ require (
 	golang.org/x/crypto v0.7.0
 	gorm.io/datatypes v1.1.1
 	gorm.io/driver/postgres v1.5.0
-	gorm.io/gorm v1.24.7-0.20230306060331-85eaf9eeda11
+	gorm.io/gorm v1.24.7-0.20230323060235-5d1cdfef2e6c
 )
 
 require (
