@@ -9,7 +9,7 @@ require (
 	github.com/gin-gonic/gin v1.9.0
 	github.com/gobeam/stringy v0.0.6
 	github.com/golang-jwt/jwt v3.2.2+incompatible
-	github.com/lib/pq v1.10.7
+	github.com/lib/pq v1.10.8
 	golang.org/x/crypto v0.8.0
 	gorm.io/datatypes v1.2.0
 	gorm.io/driver/postgres v1.5.0
