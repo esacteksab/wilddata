@@ -2,7 +2,7 @@ module github.com/esacteksab/wilddata
 
 go 1.21
 
-toolchain go1.23.3
+toolchain go1.23.4
 
 require (
 	github.com/getsentry/sentry-go v0.30.0
