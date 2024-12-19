@@ -1,25 +1,37 @@
 {
   "extends": [
-    "config:base",
+    "config:recommended",
     "helpers:pinGitHubActionDigests",
     ":dependencyDashboard"
   ],
   "packageRules": [
     {
       "rebaseWhen": "behind-base-branch",
-      "matchUpdateTypes": ["patch", "minor", "pin", "digest"],
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "pin",
+        "digest"
+      ],
       "automerge": true,
-      "lockFileMaintenance": { "enabled": true },
-      "labels": ["dependencies"]
+      "lockFileMaintenance": {
+        "enabled": true
+      },
+      "labels": [
+        "dependencies"
+      ]
     },
     {
       "automerge": true,
       "description": "Group minor and patch updates into a single PR",
       "groupName": "dependencies",
-      "managers": ["npm"],
-      "matchUpdateTypes": ["minor", "patch"]
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
     }
-
   ]
-
 }
