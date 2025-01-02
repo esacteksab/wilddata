@@ -5,7 +5,7 @@ go 1.21.0
 toolchain go1.23.4
 
 require (
-	github.com/getsentry/sentry-go v0.31.0
+	github.com/getsentry/sentry-go v0.31.1
 	github.com/getsentry/sentry-go/gin v0.31.0
 	github.com/gin-contrib/cors v1.7.3
 	github.com/gin-contrib/sessions v1.0.2
